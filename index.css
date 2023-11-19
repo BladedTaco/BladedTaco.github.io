@@ -1,3 +1,18 @@
+body {
+    background-color: #4cc9f0
+}
+
+strong {
+    display: inline-block;
+}
+
+.aboutme {
+    padding: 50px 80px;
+    font-size: 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 
 /* Make project divs hit testable */
 a.fill-div {
@@ -16,6 +31,8 @@ a.fill-div {
 .project {
     float: none;
     width: 100%;
+    border: 0px;
+    padding: 0%;
     background-color: lightblue;
     transition: 
         max-height 0.5s ease-in-out, 
@@ -24,7 +41,7 @@ a.fill-div {
 
 .project:not(.shown) {
     overflow: hidden;
-    max-height: 100px;
+    max-height: 200px;
 
 
 }
@@ -36,12 +53,55 @@ a.fill-div {
 
 }
 
-img {
-    height: 100%;
-    opacity: 1;
+.teaser::before {
+    position: absolute;
+    content: '';
+    background-image: radial-gradient(rgba(255, 255, 255, 0) 40%, rgb(0, 0, 0, 0.8) 90%);
+    height: 200px;
+    width: 100%;
+    pointer-events: none;
+    z-index: 10;
 }
 
-.project.shown img {
+
+.title {
+    position: relative;
+    display: flex;
+    font-size: 48px;
+    color: rgba(173, 233, 221);
+
+    text-shadow:
+        1px 1px 10px cyan, 
+        -1px -1px 10px lightcoral, 
+        0px 0px 4px black;
+
+    top: -200px;
+    height: 200px;
+    width: 100%;
+    pointer-events: none;
+    z-index: 20;
+
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(41, 41, 41, 0.5);
+}
+
+.teaser {
+    display:block;
+    height: 200px;
+    opacity: 1;  
+    pointer-events: none;
+}
+
+.teaser img {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.project.shown .teaser {
     opacity: 0;
     height: 0%;
     position: absolute;
