@@ -1,0 +1,56 @@
+
+/* Make project divs hit testable */
+a.fill-div {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
+.project.shown a.fill-div {
+    height: 0%;
+    width: 0%;
+}
+
+
+/* Project Divs */
+.project {
+    float: none;
+    width: 100%;
+    background-color: lightblue;
+    transition: 
+        max-height 0.5s ease-in-out, 
+        background-color 0.5s ease-in-out;
+}
+
+.project:not(.shown) {
+    overflow: hidden;
+    max-height: 100px;
+
+
+}
+.project.shown {
+    overflow: visible;
+    max-height: 4000px;
+    height: 100%;
+    background-color: aqua;
+
+}
+
+img {
+    height: 100%;
+    opacity: 1;
+}
+
+.project.shown img {
+    opacity: 0;
+    height: 0%;
+    position: absolute;
+}
+
+
+.project:has(+ .project.shown) {
+    background-color: red;
+}
+.project.shown + .project {
+    background-color: red;
+}
