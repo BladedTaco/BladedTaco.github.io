@@ -197,10 +197,12 @@ a.fill-div {
     width: 100%;
     border: 0px;
     padding: 0%;
-    background-color: lightblue;
+    /* background-color: lightblue; */
     transition: 
         max-height 0.5s ease-in-out, 
         background-color 0.5s ease-in-out;
+        
+    background-color: var(--bg-color);
 }
 
 .project:not(.shown) {
@@ -213,8 +215,6 @@ a.fill-div {
     overflow-y: visible;
     max-height: 4000px;
     height: 100%;
-    /* background-color: aqua; */
-
 }
 
 @property --gradient-inner {
