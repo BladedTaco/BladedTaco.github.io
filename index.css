@@ -54,7 +54,7 @@ strong {
 .links {
     font-size: 32px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .block {
@@ -193,6 +193,8 @@ a.fill-div {
 
 /* Project Divs */
 .project {
+    display:block;
+    position: relative;
     float: none;
     width: 100%;
     border: 0px;
@@ -208,12 +210,10 @@ a.fill-div {
 .project:not(.shown) {
     overflow: hidden;
     max-height: 200px;
-
-
 }
 .project.shown {
     overflow-y: visible;
-    max-height: 4000px;
+    max-height: 720px;
     height: 100%;
 }
 
@@ -313,3 +313,70 @@ a.fill-div {
 .project.shown + .project {
     background-color: red;
 } */
+
+.project-content {
+    display:flex;
+    flex-direction: row;
+
+    font-size: 28px;
+    align-content: center;
+    text-align: center;
+
+    width:100%;
+    height:100%;
+}
+
+/* project iframe needs 1200px width exactly */
+.project-content iframe {
+    flex: 0 0 1200px;
+}
+
+.project-title {
+    display:block;
+    width: 100%;
+    font-size: 46px;
+    align-content: center;
+    text-align: center;
+    margin: 2% 2% 0.5% 2%;
+}
+.project-subtitle {
+    display:block;
+    width: 100%;
+    font-size: 24px;
+    align-content: center;
+    text-align: center;
+    margin: 0.5% 2% 2% 2%;
+}
+
+
+.project-links {
+    display:flex;
+    justify-content: center;
+    font-size:24px;
+}
+
+.project-links .link {
+    margin: 5px;
+}
+
+
+.project-body {
+    display:flex;
+    flex-direction: row;
+    text-align: left;
+}
+
+.project-text {
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+
+    color:aliceblue;
+    
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+    align-content: center;
+    text-align: center;
+    margin: 2%;
+}
