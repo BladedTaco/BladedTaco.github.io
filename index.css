@@ -1,17 +1,181 @@
+html {
+    --scrollbarBG:rgb(38, 41, 42);
+    --thumbBG: rgb(75, 80, 83);
+}
+body::-webkit-scrollbar {
+    width: 11px;    
+}
 body {
-    background-color: #4cc9f0
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+body::-webkit-scrollbar-track {
+    background: var(--scrollbarBG);
+}
+body::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG) ;
+    border-radius: 6px;
+    border: 3px solid var(--scrollbarBG);
 }
 
+
+body {
+    background-color: rgb(30, 32, 33);
+    margin: 0px;
+    scrollbar-color: rgb(75, 80, 83) rgb(38, 41, 42);
+    scrollbar-width: thin;
+}
+
+/* About Me Section */
 strong {
     display: inline-block;
 }
 
 .aboutme {
     padding: 50px 80px;
-    font-size: 52px;
+    font-size: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    color: #a5ffd6;
+}
+
+.aboutme div {
+    background-color: #00607a;
+    padding: 12px;
+    border-radius: 26px;
+}
+
+.aboutme div * {
+    padding: 0px;
+}
+
+/* About Me Links */
+.links {
+    font-size: 32px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.block {
+    
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 2em;
+}
+
+.block *:nth-child(1) {
+
+    z-index: 40;
+    background-color: #023047;
+    border-radius: 4px;
+    padding: 6px 12px;
+}
+
+.link {
+    text-align: center;
+}
+
+.link a {
+    color: #8ecae6;
+}
+
+.link a:hover {
+    color: aliceblue;
+}
+
+.link a+* {
+    flex-basis: 0px;
+    display:inline;
+    text-align: center;
+    position:absolute;
+    justify-content: center;
+    
+    margin-left: 50%;
+    transform: translateX(-50%);
+    top: 0px;
+    opacity: 0;
+    transition:
+        top 0.5s ease-in-out,
+        opacity 0.5s ease-in-out;
+    pointer-events: none;
+    /* color: #023047; */
+}
+
+.link:hover a+* {
+    flex-basis: 0px;
+    text-align: center;
+    position:absolute;
+    top:100%;
+    justify-content: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+    transition: 
+        top 0.5s ease-in-out,
+        opacity 0.5s ease-in-out;
+    pointer-events:fill;
+}
+
+.link.inline{
+    display: inline-flex;
+    vertical-align: top;
+}
+
+.link.inline * {
+    z-index: 40;
+    color:inherit;
+    vertical-align: top;
+    text-align: center;
+}
+
+.link.inline a+* {
+    z-index: 10;
+    display: inline-block;
+    position: relative;
+    overflow: visible;
+    
+    left: -50%;    
+    vertical-align: top;
+    margin: 0px;
+    margin-left: -100%;
+    margin-right: -100%;
+    text-align: center;
+    justify-content: center;
+    transform: translateX(-50%);
+}
+
+.link.inline:hover a+* {
+    flex-basis: 0px;
+}
+
+.link.inline a+* a {
+    display: block;
+    position: absolute;
+    flex-basis: 0px;
+    margin: 0px;
+    top: 0%;
+    transition: 
+        top 0.5s ease-in-out;
+    /* left: -50%; */
+    justify-content: center;
+    text-align: center;
+}
+
+.link.inline:hover a+* a {
+    display: relative;
+    position: absolute;
+    flex-basis: 0px;
+    transition: 
+        top 0.5s ease-in-out;
+    margin: 0px;
+    top: 100%;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-self: center;
+    padding: 0px;
 }
 
 /* Make project divs hit testable */
@@ -46,21 +210,53 @@ a.fill-div {
 
 }
 .project.shown {
-    overflow: visible;
+    overflow-y: visible;
     max-height: 4000px;
     height: 100%;
-    background-color: aqua;
+    /* background-color: aqua; */
 
 }
 
+@property --gradient-inner {
+    syntax: '<percentage>';
+    initial-value: 40%;
+    inherits: false;
+}
+@property --gradient-outer {
+    syntax: '<percentage>';
+    initial-value: 40%;
+    inherits: false;
+}
+
+
 .teaser::before {
+    --gradient-inner: 40%;
+    --gradient-outer: 90%;
+
+    overflow: hidden;
     position: absolute;
     content: '';
-    background-image: radial-gradient(rgba(255, 255, 255, 0) 40%, rgb(0, 0, 0, 0.8) 90%);
+    background-image: radial-gradient(
+        rgba(255, 255, 255, 0) var(--gradient-inner), 
+        rgb(0, 0, 0, 0.8) var(--gradient-outer)
+    );
     height: 200px;
-    width: 100%;
-    pointer-events: none;
+    /* width: 100%; */
+    /* pointer-events: none; */
+    pointer-events: visible;
     z-index: 10;
+
+    transition: 
+        --gradient-inner 0.5s ease-in-out,
+        --gradient-outer 0.5s ease-in-out;
+}
+
+.teaser:hover::before{
+    --gradient-inner: 100%;
+    --gradient-outer: 120%;
+    transition: 
+        --gradient-inner 0.5s ease-in-out,
+        --gradient-outer 0.5s ease-in-out;
 }
 
 
@@ -104,13 +300,15 @@ a.fill-div {
 .project.shown .teaser {
     opacity: 0;
     height: 0%;
+    width: 0%;
     position: absolute;
+    overflow: hidden;
 }
 
-
+/* 
 .project:has(+ .project.shown) {
     background-color: red;
 }
 .project.shown + .project {
     background-color: red;
-}
+} */
