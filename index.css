@@ -241,7 +241,7 @@ a.fill-div {
         rgb(0, 0, 0, 0.8) var(--gradient-outer)
     );
     height: 200px;
-    /* width: 100%; */
+    width: 100%;
     /* pointer-events: none; */
     pointer-events: visible;
     z-index: 10;
@@ -287,6 +287,7 @@ a.fill-div {
 .teaser {
     display:block;
     height: 200px;
+    width: 100%;
     opacity: 1;  
     pointer-events: none;
 }
